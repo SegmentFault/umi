@@ -42,7 +42,34 @@ test('normal with dynamicImport', () => {
   `.trim(),
   );
 });
-
+test('normal with dynamicImport and ssr', () => {
+  const ret = routesToJSON({
+    routes: [
+      { path: '/', component: '@/pages/index.ts' },
+      { path: '/users/:id', component: '@/pages/users/[id].ts' },
+    ],
+    config: {
+      dynamicImport: true,
+    },
+    isServer: true,
+  });
+  expect(ret).toEqual(
+    `
+[
+  {
+    "path": "/",
+    "component": require('@/pages/index.ts').default,
+    "_chunkName": "p__index"
+  },
+  {
+    "path": "/users/:id",
+    "component": require('@/pages/users/[id].ts').default,
+    "_chunkName": "p__users__id"
+  }
+]
+  `.trim(),
+  );
+});
 test('component with arrow function', () => {
   expect(
     routesToJSON({
