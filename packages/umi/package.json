@@ -29,8 +29,8 @@
   },
   "dependencies": {
     "@babel/core": "7.12.10",
-    "@umijs/core": "3.3.9",
-    "@umijs/preset-built-in": "3.3.9",
+    "@umijs/core": "./umi/packages/core",
+    "@umijs/preset-built-in": "./umi/packages/preset-built-in",
     "@umijs/runtime": "3.3.9",
     "@umijs/types": "3.3.9",
     "@umijs/utils": "3.3.9",
